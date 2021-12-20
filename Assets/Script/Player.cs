@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 
     void playerControl()
     {
-        transform.Translate(Vector3.forward * m_Speed * Time.deltaTime);
+        //transform.Translate(Vector3.forward * m_Speed * Time.deltaTime);
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Space))
         {
-                if (stopWatch.ElapsedMilliseconds >= fireSpeed)
+            if (stopWatch.ElapsedMilliseconds >= fireSpeed)
             {
                 piste.PlayOneShot(sound);
                 Instantiate(bullet, new Vector3 ((transform.position.x)-1.0f, transform.position.y, (transform.position.z)+3.0f), Quaternion.identity);
@@ -110,11 +110,5 @@ public class Player : MonoBehaviour
             Destroy(other);
             GameManager.instance.TakeDamage(-1);
         }
-
-
-       /* if(other.GetComponent<Enemy>())
-        {
-
-        }*/
     }
 }
