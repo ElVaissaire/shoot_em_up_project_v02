@@ -14,7 +14,6 @@ public class LandScapeManager : MonoBehaviour
     [SerializeField] private GameObject instancie2;
     private bool exists1;
     private bool exists2;
-    private float newPosZ;
 
     private void Awake()
     {

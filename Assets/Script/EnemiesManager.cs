@@ -30,7 +30,7 @@ public class EnemiesManager : MonoBehaviour
         {
              while (Application.isPlaying)
              {
-                    spawnRand = Random.Range(-7, 7);               
+                    spawnRand = Random.Range(-12, 12);               
                     Instantiate(enemy, new Vector3 (spawnRand, startPos.position.y, startPos.position.z), Quaternion.identity);
                     yield return new WaitForSeconds(apparition);
              }
