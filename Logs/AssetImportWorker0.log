@@ -856,3 +856,4 @@ Received Import Request.
 Start importing Assets/Scenes/GameScene.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2493bad54d9a6a1f709cc9e6a0f8374d') in 0.007563 seconds 
   Import took 0.011190 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
