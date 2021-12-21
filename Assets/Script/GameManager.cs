@@ -11,15 +11,18 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private Slider bossHealthSlider;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject gameOver;
     [SerializeField] private Button retry;
 
-    public int maxHealth = 10;
-    public int health = 2;
+    public int maxHealthP = 10;
+    public int healthP = 2;
     public int score = 0;
-    
+
+    public int maxHealthB = 200;
+    public int healthB = 2;
 
     private void Awake()
     {
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
         retry.onClick.AddListener(OnButtonPressed);
         gameOver.SetActive(false);
         TakeDamage(0);
+        BossDamage(0);
         addScore(0);
     }
 
@@ -50,14 +54,28 @@ public class GameManager : MonoBehaviour
 
     public void TakeDamage(int damageValue)
     {
-        health = health + damageValue;
-        if(health == 0)
+        healthP = healthP + damageValue;
+        if(healthP == 0)
         {
             Destroy(player);
             gameOver.SetActive(true);
         }
 
-        healthSlider.value = health / (float)maxHealth;
+        healthSlider.value = healthP / (float)maxHealthP;
+    }
+
+    public void BossDamage(int damageValue)
+    {
+        healthB = healthB + damageValue;
+        if(healthB == 0)
+        {
+            BossManager.instance.destroyBoss();
+            BossManager.instance.exists = false;
+            BossManager.instance.stopWatch.Start();
+            healthB = maxHealthB;
+            addScore(1000);
+        }
+        bossHealthSlider.value = healthB / (float)maxHealthB;
     }
 
     public void addScore(int extrasScore)

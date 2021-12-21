@@ -14,8 +14,8 @@ public class boss : MonoBehaviour
     [SerializeField] private int hori_speed;
     [SerializeField] private int vert_speed;
     [SerializeField] private GameObject bullet;
-    //[SerializeField] private AudioClip sound;
-    //[SerializeField] private AudioSource piste;
+    [SerializeField] private AudioClip sound;
+    [SerializeField] private AudioSource piste;
     [SerializeField] private float fireSpeed = 10000.0f;
 
 
@@ -28,7 +28,8 @@ public class boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        piste = GetComponent<AudioSource>();
+        piste.volume = 0.1f;
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class boss : MonoBehaviour
         {
             if(sens == 0) //direction du boss vers la gauche
             {
-                if(transform.position.x > -15)
+                if(transform.position.x > -18)
                 {
                     transform.Translate(Vector3.left * hori_speed * Time.deltaTime);
                 }
@@ -61,7 +62,7 @@ public class boss : MonoBehaviour
             }
             else //direction du boss vers la droite
             {
-                if (transform.position.x < 15)
+                if (transform.position.x < 18)
                 {
                     transform.Translate(Vector3.right * hori_speed * Time.deltaTime);
                 }
@@ -74,9 +75,9 @@ public class boss : MonoBehaviour
 
             if (newStopWatch.ElapsedMilliseconds >= fireSpeed)
             {
-                //piste.PlayOneShot(sound);
-                Instantiate(bullet, new Vector3((transform.position.x) + 2.0f, transform.position.y, (transform.position.z) - 8.0f), Quaternion.identity);
-                Instantiate(bullet, new Vector3((transform.position.x) - 2.0f, transform.position.y, (transform.position.z) - 8.0f), Quaternion.identity);
+                piste.PlayOneShot(sound);
+                Instantiate(bullet, new Vector3((transform.position.x) + 2.0f, transform.position.y, (transform.position.z) - 11.0f), Quaternion.identity);
+                Instantiate(bullet, new Vector3((transform.position.x) - 2.0f, transform.position.y, (transform.position.z) - 11.0f), Quaternion.identity);
                 
                 newStopWatch.Restart();
             }

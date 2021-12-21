@@ -22,7 +22,6 @@ public class EnemiesManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        apparition = 2.0f;
         StartCoroutine(delay());
     }
 

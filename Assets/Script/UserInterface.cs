@@ -8,14 +8,14 @@ using UnityEngine.SceneManagement;
 public class UserInterface : MonoBehaviour
 {
     [SerializeField] private GameObject pauseScreen;
-    [SerializeField] private Button retry;
+    [SerializeField] private Button resume;
     //[SerializeField] private int pauseKey;
 
     // Start is called before the first frame update
     void Start()
     {
-       // retry.onClick.AddListener(OnButtonPressed);
         pauseScreen.SetActive(false);
+        resume.onClick.AddListener(OnButtonPressed);
     }
 
     // Update is called once per frame
@@ -41,8 +41,8 @@ public class UserInterface : MonoBehaviour
 
     public void OnButtonPressed()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        pauseScreen.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     void TogglePausePanel(bool pause)

@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     {
         rightBound = (float)((float)Screen.width * 90.0 / 100.0);
         leftBound = (float)((float)Screen.width * 10.0 / 100.0);
-        upBound = (float)((float)Screen.height * 90.0 / 100.0);
+        upBound = (float)((float)Screen.height * 80.0 / 100.0);
         downBound = (float)((float)Screen.height * 10.0 / 100.0);
 
         //screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
@@ -109,6 +109,18 @@ public class Player : MonoBehaviour
         {
             Destroy(other);
             GameManager.instance.TakeDamage(-1);
+        }
+        if (other.layer == 11)
+        {
+            GameManager.instance.TakeDamage(-1);
+        }
+        if(other.tag == "Bonus")
+        {
+            Destroy(other);
+            if(GameManager.instance.healthP != GameManager.instance.maxHealthP)
+            {
+                GameManager.instance.TakeDamage(1);
+            }
         }
     }
 }

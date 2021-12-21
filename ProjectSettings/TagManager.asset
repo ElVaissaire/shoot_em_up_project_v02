@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Boss
+  - Bonus
   layers:
   - Default
   - TransparentFX
@@ -12,12 +14,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Bullet Player
+  - Bullet Boss
+  - Bonus
+  - Enemies
+  - Player
+  - Boss
   - 
   - 
   - 

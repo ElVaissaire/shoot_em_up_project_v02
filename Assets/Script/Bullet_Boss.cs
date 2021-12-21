@@ -6,11 +6,12 @@ public class Bullet_Boss : MonoBehaviour
 {
     private Vector3 bulletPos;
     [SerializeField] private int bulletSpeed = 10;
+    [SerializeField] private GameObject bonus;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), bonus.GetComponent<Collider>(), true);
     }
 
     // Update is called once per frame
