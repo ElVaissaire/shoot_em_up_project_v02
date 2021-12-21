@@ -8,37 +8,40 @@ public class Bullet_Boss : MonoBehaviour
     [SerializeField] private int bulletSpeed = 10;
     [SerializeField] private GameObject bonus;
 
-    // Start is called before the first frame update
     void Start()
     {
-        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), bonus.GetComponent<Collider>(), true);
+        
     }
 
-    // Update is called once per frame
+    //On définit la position du bullet à l'écran par rapport à la caméra
+    //et on appelle la méthode de gestioin du bullet
     void Update()
     {
         bulletPos = Camera.main.WorldToScreenPoint(transform.position);
         bulletMove();
-        //Debug.Log(bulletPos.z);
     }
 
+    //Méthode qui gère le comportement du bullet du boss
     void bulletMove()
     {
-        if (bulletPos.y > 0)
+        if (bulletPos.y > 0) //si le bullet n'a pas encore atteint la limite de l'écran
         {
-            transform.Translate(Vector3.back * bulletSpeed * Time.deltaTime);
+            transform.Translate(Vector3.back * bulletSpeed * Time.deltaTime); //on le fait avancer vers le bas
         }
 
-        else
+        else //sinon on détruit le bullet
         {
             Destroy(gameObject);
         }
     }
 
+    //Méthode qui gère le comportement des collisions du bullet
     private void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.gameObject;
 
+        //Si le bullet entre en collision avec le player
+        //il disparaît et faire perdre un point de vie au player
         if (other.tag == "Player")
         {
             Destroy(gameObject);

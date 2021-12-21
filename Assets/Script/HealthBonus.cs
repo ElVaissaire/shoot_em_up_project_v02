@@ -13,14 +13,14 @@ public class HealthBonus : MonoBehaviour
         speed = 10;
     }
 
-    // Update is called once per frame
+    //A chaque frame on actualise la position de l'objet bonus ou on le détruit
     void Update()
     {
-        if (transform.position.z > HealthBonusManager.instance.GetEndPos().z)
+        if (transform.position.z > HealthBonusManager.instance.GetEndPos().z) //s'il n'a pas encore atteint la limite de l'écran
         {
-            transform.Translate(Vector3.back * speed * Time.deltaTime);
+            transform.Translate(Vector3.back * speed * Time.deltaTime); //on le fait avancer vers le bas
         }
-        else
+        else //sinon on le détruits
         {
             Destroy(gameObject);
         }

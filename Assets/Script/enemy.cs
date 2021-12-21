@@ -5,23 +5,24 @@ using UnityEngine;
 public class enemy : MonoBehaviour
 {
     private int speed;
-    // Start is called before the first frame update
+    
+
     void Start()
     {
-        speed = 10;
+        speed = 13;
     }
 
-    // Update is called once per frame
+    //A chaque frame, on actualise la position de l'objet "Enemy"
     void Update()
     {
-        if (transform.position.z > EnemiesManager.instance.GetEndPos().z)
+        if (transform.position.z > EnemiesManager.instance.GetEndPos().z) //si l'ennemi n'a pas atteint la position en z de fin
         {
-            transform.Translate(Vector3.back * speed * Time.deltaTime);
+            transform.Translate(Vector3.back * speed * Time.deltaTime); //on le fait avancer vers le bas
         }
-        else
+        else //sinon on le détruit
         {
             Destroy(gameObject);
-            GameManager.instance.TakeDamage(-1); //on perd un point de vie si un ennemi arrive à passer la limite de l'écran
+            GameManager.instance.TakeDamage(-1); //le player perd un point de vie si un ennemi arrive à passer la limite de l'écran
         }
     }
 }

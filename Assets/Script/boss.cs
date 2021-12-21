@@ -19,61 +19,66 @@ public class boss : MonoBehaviour
     [SerializeField] private float fireSpeed = 10000.0f;
 
 
+    //Démarrage d'un compteur qui nous permet
+    //de gérer la cadence de tir
+
     private void Awake()
     {
         newStopWatch = new Stopwatch();
         newStopWatch.Start();
     }
 
-    // Start is called before the first frame update
+    //Initialisation du son produit par le boss (son des bullets)
     void Start()
     {
         piste = GetComponent<AudioSource>();
         piste.volume = 0.1f;
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
         BossControl();
-        //Debug.Log(newStopWatch.ElapsedMilliseconds);
     }
 
+
+    //Méthode qui gère les déplacements et les tir du boss
     void BossControl()
     {
+        //fais avancer le boss verticalement jusqu'à l'écran et s'arrête à la position stopPos
         if (transform.position.z > BossManager.instance.getStopPos().z)
         {
             transform.Translate(Vector3.back * vert_speed * Time.deltaTime);
         }
         
-
+        //Dans le cas où il est suffisamment avancé
         else
         {
             if(sens == 0) //direction du boss vers la gauche
             {
-                if(transform.position.x > -18)
+                if(transform.position.x > -15)//on fait avancer le boss vers la gauche
                 {
                     transform.Translate(Vector3.left * hori_speed * Time.deltaTime);
                 }
-                else
+                else //sinon on change de sens car il est arrivé à la limite
                 {
                     sens = 1;
                 }
             }
             else //direction du boss vers la droite
             {
-                if (transform.position.x < 18)
+                if (transform.position.x < 15)//on fait avancer le boss vers la droite
                 {
                     transform.Translate(Vector3.right * hori_speed * Time.deltaTime);
                 }
-                else
+                else //sinon on change de sens car il est arrivé à la limite
                 {
                     sens = 0;
                 }
             }
 
 
-            if (newStopWatch.ElapsedMilliseconds >= fireSpeed)
+            if (newStopWatch.ElapsedMilliseconds >= fireSpeed) //si le compteur est supérieur au cooldown de la cadence de tir, on créer 2 bullets + on produit le son de tir
             {
                 piste.PlayOneShot(sound);
                 Instantiate(bullet, new Vector3((transform.position.x) + 2.0f, transform.position.y, (transform.position.z) - 11.0f), Quaternion.identity);

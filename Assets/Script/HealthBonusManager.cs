@@ -12,30 +12,32 @@ public class HealthBonusManager : MonoBehaviour
     [SerializeField] private Transform startPos;
     [SerializeField] private Transform endPos;
 
+    //On crée un singleton
     private void Awake()
     {
         instance = this;
     }
 
-    // Start is called before the first frame update
+    //Gère l'apparition des bonus à l'écran
     void Start()
     {
         StartCoroutine(delay());
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
     }
 
+
     IEnumerator delay()
     {
-        while (Application.isPlaying)
+        while (Application.isPlaying) //tant que le jeu est actif
         {
-            spawnRand = Random.Range(-12, 12);
-            Instantiate(bonus, new Vector3(spawnRand, startPos.position.y, startPos.position.z), Quaternion.identity);
-            yield return new WaitForSeconds(apparition);
+            spawnRand = Random.Range(-12, 12); //on génère un integer aléatoirement entre -12 et 12 pour l'utiliser en position de spawn en x
+            Instantiate(bonus, new Vector3(spawnRand, startPos.position.y, startPos.position.z), Quaternion.identity); //on créer un objet "bonus" à l'écran
+            yield return new WaitForSeconds(apparition); //on attend le délai d'apparition avant de recréer un objet "bonus"
         }
     }
 

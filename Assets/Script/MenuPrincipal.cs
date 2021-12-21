@@ -21,7 +21,8 @@ public class MenuPrincipal : MonoBehaviour
     private float posHor;
     private float posVertTitle;
     private float posHorTitle;
-    // Start is called before the first frame update
+  
+    //On place les objets à l'écran de manière à ce que ça s'adapte à la taille d'écran
     void Start()
     {
         posGame = (float)(((float)Screen.height * 30.0) / 100.0);
@@ -35,13 +36,8 @@ public class MenuPrincipal : MonoBehaviour
         buttonQuit.transform.position = new Vector3(posHor, posQuit, 0);
         Title.transform.position = new Vector3(posHorTitle, posVertTitle, 0);
 
-        //buttonGame.onClick.AddListener(OnGamePressed);
-        //credits.onClick.AddListener(OnCreditsPressed);
-        //quit.onClick.AddListener(OnQuitPressed);
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         
