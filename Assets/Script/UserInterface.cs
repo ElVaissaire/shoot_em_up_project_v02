@@ -9,8 +9,7 @@ public class UserInterface : MonoBehaviour
 {
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private Button resume;
-    //[SerializeField] private int pauseKey;
-
+   
     // Start is called before the first frame update
     void Start()
     {
