@@ -50,8 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hori_speed: 5
   vert_speed: 10
-  bullet: {fileID: 5877517314759119017, guid: 68cb8c4f30f3f7342933d356c6f3218b, type: 3}
-  fireSpeed: 3
+  bullet: {fileID: 2959409418377997435, guid: 39a0b7ceb077e9446b7da2a8c4145b9e, type: 3}
+  fireSpeed: 700
 --- !u!1 &1410457229386332625
 GameObject:
   m_ObjectHideFlags: 0

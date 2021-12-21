@@ -9,20 +9,20 @@ public class boss : MonoBehaviour
 
     //private int init;
     private int sens = 0;
-    private Stopwatch stopWatch;
+    private Stopwatch newStopWatch;
 
     [SerializeField] private int hori_speed;
     [SerializeField] private int vert_speed;
     [SerializeField] private GameObject bullet;
     //[SerializeField] private AudioClip sound;
     //[SerializeField] private AudioSource piste;
-    [SerializeField] private float fireSpeed = 150.0f;
+    [SerializeField] private float fireSpeed = 10000.0f;
 
 
     private void Awake()
     {
-        stopWatch = new Stopwatch();
-        stopWatch.Start();
+        newStopWatch = new Stopwatch();
+        newStopWatch.Start();
     }
 
     // Start is called before the first frame update
@@ -35,46 +35,51 @@ public class boss : MonoBehaviour
     void Update()
     {
         BossControl();
-        Debug.Log(transform.position);
+        //Debug.Log(newStopWatch.ElapsedMilliseconds);
     }
 
     void BossControl()
     {
-        if(transform.position.z > BossManager.instance.getStopPos().z)
+        if (transform.position.z > BossManager.instance.getStopPos().z)
         {
             transform.Translate(Vector3.back * vert_speed * Time.deltaTime);
         }
-        /*else
+        
+
+        else
         {
-            if (sens == 0 && transform.position.x > BossManager.instance.getLeftPos().x)
+            if(sens == 0) //direction du boss vers la gauche
             {
-                transform.Translate(Vector3.left * hori_speed * Time.deltaTime);
+                if(transform.position.x > -15)
+                {
+                    transform.Translate(Vector3.left * hori_speed * Time.deltaTime);
+                }
+                else
+                {
+                    sens = 1;
+                }
             }
-            if (sens == 0 && transform.position.x == BossManager.instance.getLeftPos().x)
+            else //direction du boss vers la droite
             {
-                sens = 1;
-                Debug.Log("changement de sens");
+                if (transform.position.x < 15)
+                {
+                    transform.Translate(Vector3.right * hori_speed * Time.deltaTime);
+                }
+                else
+                {
+                    sens = 0;
+                }
             }
 
-            if (sens == 1 && transform.position.x < BossManager.instance.getRightPos().x)
+
+            if (newStopWatch.ElapsedMilliseconds >= fireSpeed)
             {
-                transform.Translate(Vector3.right * hori_speed * Time.deltaTime);
+                //piste.PlayOneShot(sound);
+                Instantiate(bullet, new Vector3((transform.position.x) + 2.0f, transform.position.y, (transform.position.z) - 8.0f), Quaternion.identity);
+                Instantiate(bullet, new Vector3((transform.position.x) - 2.0f, transform.position.y, (transform.position.z) - 8.0f), Quaternion.identity);
+                
+                newStopWatch.Restart();
             }
-            if (sens == 1 && transform.position.x == BossManager.instance.getRightPos().x)
-            {
-                sens = 0;
-                Debug.Log("changement de sens");
-            }
-        }*/
-
-
-        if (stopWatch.ElapsedMilliseconds >= fireSpeed)
-        {
-            //piste.PlayOneShot(sound);
-            Instantiate(bullet, new Vector3((transform.position.x) + 1.0f, transform.position.y, (transform.position.z) - 3.0f), Quaternion.identity);
-            Instantiate(bullet, new Vector3((transform.position.x) - 1.0f, transform.position.y, (transform.position.z) - 3.0f), Quaternion.identity);
-
-            stopWatch.Restart();
         }
     }
 }

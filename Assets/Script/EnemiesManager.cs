@@ -30,9 +30,13 @@ public class EnemiesManager : MonoBehaviour
         {
              while (Application.isPlaying)
              {
-                    spawnRand = Random.Range(-12, 12);               
-                    Instantiate(enemy, new Vector3 (spawnRand, startPos.position.y, startPos.position.z), Quaternion.identity);
-                    yield return new WaitForSeconds(apparition);
+                if (BossManager.instance.exists == false)
+                {
+                    spawnRand = Random.Range(-12, 12);
+                    Instantiate(enemy, new Vector3(spawnRand, startPos.position.y, startPos.position.z), Quaternion.identity);
+                    
+                }
+                yield return new WaitForSeconds(apparition);
              }
         }
     public Vector3 GetEndPos()

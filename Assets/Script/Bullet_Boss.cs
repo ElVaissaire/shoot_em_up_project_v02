@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet_Boss : MonoBehaviour
 {
     private Vector3 bulletPos;
-    [SerializeField] private int bulletSpeed;
+    [SerializeField] private int bulletSpeed = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +18,12 @@ public class Bullet_Boss : MonoBehaviour
     {
         bulletPos = Camera.main.WorldToScreenPoint(transform.position);
         bulletMove();
+        //Debug.Log(bulletPos.z);
     }
 
     void bulletMove()
     {
-        if (bulletPos.y < EnemiesManager.instance.GetEndPos().z)
+        if (bulletPos.y > 0)
         {
             transform.Translate(Vector3.back * bulletSpeed * Time.deltaTime);
         }
@@ -39,9 +40,8 @@ public class Bullet_Boss : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            Destroy(other);
             Destroy(gameObject);
-            GameManager.instance.addScore(100);
+            GameManager.instance.TakeDamage(-1);
         }
     }
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6742298956154589634}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,3 +135,5 @@ MonoBehaviour:
   m_Speed: 0
   fireSpeed: 150
   bullet: {fileID: 5877517314759119017, guid: 68cb8c4f30f3f7342933d356c6f3218b, type: 3}
+  sound: {fileID: 0}
+  piste: {fileID: 0}

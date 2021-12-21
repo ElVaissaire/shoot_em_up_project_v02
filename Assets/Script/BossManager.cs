@@ -13,6 +13,8 @@ public class BossManager : MonoBehaviour
     [SerializeField] private Transform leftPos;
     [SerializeField] private Transform rightPos;
 
+    public bool exists = false;
+
 
     private void Awake()
     {
@@ -35,6 +37,7 @@ public class BossManager : MonoBehaviour
     void spawnBoss()
     {
         Instantiate(boss, new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + 50.0f), Quaternion.identity);
+        exists = true;
     }
 
     public Vector3 getStopPos()
